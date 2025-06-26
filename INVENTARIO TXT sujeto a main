@@ -1,0 +1,103 @@
+{"SKU": "00000001", "cat": "GPU", "modelo": "RTX 3070", "marca": "NVIDIA", "precio": 5, "stock": 5}
+{"SKU": "00000002", "cat": "GPU", "modelo": "RTX 5070ti", "marca": "NVIDIA", "precio": 1100000, "stock": 22}
+{"SKU": "00000003", "cat": "GPU", "modelo": "RX 9070", "marca": "AMD", "precio": 1600000, "stock": 15}
+{"SKU": "00000004", "cat": "GPU", "modelo": "RTX 2060 Super", "marca": "NVIDIA", "precio": 420500, "stock": 35}
+{"SKU": "00000005", "cat": "GPU", "modelo": "RX 6500", "marca": "AMD", "precio": 267990, "stock": 40}
+{"SKU": "00000006", "cat": "CPU", "modelo": "I3 12100", "marca": "Intel", "precio": 161400, "stock": 6}
+{"SKU": "00000007", "cat": "CPU", "modelo": "Ultra I7 265kf", "marca": "Intel", "precio": 590000, "stock": 16}
+{"SKU": "00000008", "cat": "CPU", "modelo": "I9 14900", "marca": "Intel", "precio": 820000, "stock": 9}
+{"SKU": "00000009", "cat": "CPU", "modelo": "Ryzen 9 7900X", "marca": "AMD", "precio": 590000, "stock": 23}
+{"SKU": "00000010", "cat": "CPU", "modelo": "Ryzen 5 7600", "marca": "AMD", "precio": 311200, "stock": 17}
+{"SKU": "00000011", "cat": "Monitor", "modelo": "Va24EHF-J 24 100Hz", "marca": "Asus", "precio": 182900, "stock": 18}
+{"SKU": "00000012", "cat": "Monitor", "modelo": "Led 24 Curvo F390 Slim", "marca": "Samsung", "precio": 21500, "stock": 15}
+{"SKU": "00000013", "cat": "Monitor", "modelo": "Led 27 27MS500 100Hz", "marca": "LG", "precio": 224850, "stock": 11}
+{"SKU": "00000014", "cat": "Monitor", "modelo": "Gs27Fa 27 180Hz 1ms", "marca": "Gigabyte", "precio": 300100, "stock": 43}
+{"SKU": "00000015", "cat": "Monitor", "modelo": "VX2718-2KPCMHD 27 165Hz 1Ms", "marca": "ViewSonic", "precio": 442940, "stock": 15}
+{"SKU": "00000016", "cat": "Gabinete", "modelo": "Zauron vidrio templado", "marca": "Aerocool", "precio": 645920, "stock": 11}
+{"SKU": "00000017", "cat": "Gabinete", "modelo": "Mag Force M100a", "marca": "Msi", "precio": 74190, "stock": 44}
+{"SKU": "00000018", "cat": "Gabinete", "modelo": "S100 Templado Micro Atx", "marca": "Thermaltake", "precio": 74999, "stock": 17}
+{"SKU": "00000019", "cat": "Gabinete", "modelo": "Elite 301 Templado Micro Atx", "marca": "Cooler Master", "precio": 75000, "stock": 12}
+{"SKU": "00000020", "cat": "Gabinete", "modelo": "Carbide Spec Delta TG", "marca": "Corsair", "precio": 101700, "stock": 22}
+{"SKU": "00000021", "cat": "PlacaBase", "modelo": "Prime A620M-k Csm Am5", "marca": "Asus", "precio": 116400, "stock": 7}
+{"SKU": "00000022", "cat": "PlacaBase", "modelo": "B850 Gaming Pplus Wifi Am5", "marca": "Msi", "precio": 343810, "stock": 3}
+{"SKU": "00000023", "cat": "PlacaBase", "modelo": "H610M K V2 DDR5 Lga1700", "marca": "Gigabyte", "precio": 105200, "stock": 30}
+{"SKU": "00000024", "cat": "PlacaBase", "modelo": "B760-Plus Gaming DDR5 LGA1700", "marca": "Asus", "precio": 300100, "stock": 20}
+{"SKU": "00000025", "cat": "PlacaBase", "modelo": "Aorus Elite Z890M DDR5 LGA1851", "marca": "Gigabyte", "precio": 364800, "stock": 14}
+{"SKU": "00000026", "cat": "FuenteAlim", "modelo": "Mwe V2 500W 80Plus Bronze", "marca": "Cooler Master", "precio": 80000, "stock": 14}
+{"SKU": "00000027", "cat": "FuenteAlim", "modelo": "CV550 550\" 80 PLus OEM", "marca": "Corsair", "precio": 86700, "stock": 15}
+{"SKU": "00000028", "cat": "FuenteAlim", "modelo": "P650B 80 Plus Bronze", "marca": "Gigabyte", "precio": 97000, "stock": 22}
+{"SKU": "00000029", "cat": "FuenteAlim", "modelo": "Toughpower 750W 80 Plus Gold", "marca": "Termaltake", "precio": 172500, "stock": 17}
+{"SKU": "00000030", "cat": "FuenteAlim", "modelo": "500W Vp-500 80 Plus Bronze", "marca": "Gamemax", "precio": 92100, "stock": 5}
+{"SKU": "00000031", "cat": "GPU", "modelo": "RTX 3080", "marca": "NVIDIA", "precio": 800000, "stock": 20}
+{"SKU": "00000032", "cat": "GPU", "modelo": "RX 6800 XT", "marca": "AMD", "precio": 900000, "stock": 18}
+{"SKU": "00000033", "cat": "GPU", "modelo": "RTX 4060", "marca": "NVIDIA", "precio": 600000, "stock": 25}
+{"SKU": "00000034", "cat": "GPU", "modelo": "RX 6600", "marca": "AMD", "precio": 350000, "stock": 30}
+{"SKU": "00000036", "cat": "CPU", "modelo": "I5 12400F", "marca": "Intel", "precio": 250000, "stock": 15}
+{"SKU": "00000037", "cat": "CPU", "modelo": "Ryzen 7 5800X", "marca": "AMD", "precio": 350000, "stock": 12}
+{"SKU": "00000038", "cat": "CPU", "modelo": "I7 13700K", "marca": "Intel", "precio": 700000, "stock": 8}
+{"SKU": "00000039", "cat": "CPU", "modelo": "Ryzen 5 5600G", "marca": "AMD", "precio": 200000, "stock": 15}
+{"SKU": "00000041", "cat": "Monitor", "modelo": "Odyssey G5 32", "marca": "Samsung", "precio": 350000, "stock": 7}
+{"SKU": "00000042", "cat": "Monitor", "modelo": "UltraGear 27GL850", "marca": "LG", "precio": 400000, "stock": 9}
+{"SKU": "00000043", "cat": "Monitor", "modelo": "Predator XB273", "marca": "Acer", "precio": 500000, "stock": 6}
+{"SKU": "00000044", "cat": "Monitor", "modelo": "TUF Gaming VG27AQ", "marca": "Asus", "precio": 420000, "stock": 8}
+{"SKU": "00000045", "cat": "Monitor", "modelo": "EX2780Q", "marca": "BenQ", "precio": 380000, "stock": 5}
+{"SKU": "00000046", "cat": "Gabinete", "modelo": "H510", "marca": "NZXT", "precio": 120000, "stock": 5}
+{"SKU": "00000047", "cat": "Gabinete", "modelo": "MasterBox Q300L", "marca": "Cooler Master", "precio": 95000, "stock": 16}
+{"SKU": "00000048", "cat": "Gabinete", "modelo": "P400A", "marca": "Phanteks", "precio": 110000, "stock": 9}
+{"SKU": "00000049", "cat": "Gabinete", "modelo": "Define 7", "marca": "Fractal Design", "precio": 180000, "stock": 8}
+{"SKU": "00000050", "cat": "Gabinete", "modelo": "Obsidian 500D", "marca": "Corsair", "precio": 210000, "stock": 5}
+{"SKU": "00000051", "cat": "PlacaBase", "modelo": "Z690 AORUS ELITE", "marca": "Gigabyte", "precio": 400000, "stock": 8}
+{"SKU": "00000052", "cat": "PlacaBase", "modelo": "B550 Tomahawk", "marca": "MSI", "precio": 250000, "stock": 12}
+{"SKU": "00000053", "cat": "PlacaBase", "modelo": "X570 AORUS PRO", "marca": "Gigabyte", "precio": 350000, "stock": 6}
+{"SKU": "00000054", "cat": "PlacaBase", "modelo": "Z790-P WiFi", "marca": "Asus", "precio": 450000, "stock": 7}
+{"SKU": "00000055", "cat": "PlacaBase", "modelo": "B660M DS3H", "marca": "Gigabyte", "precio": 180000, "stock": 11}
+{"SKU": "00000056", "cat": "FuenteAlim", "modelo": "RM750x 750W", "marca": "Corsair", "precio": 150000, "stock": 10}
+{"SKU": "00000057", "cat": "FuenteAlim", "modelo": "SuperNOVA 650 G5", "marca": "EVGA", "precio": 130000, "stock": 8}
+{"SKU": "00000058", "cat": "FuenteAlim", "modelo": "Straight Power 11 750W", "marca": "be quiet!", "precio": 170000, "stock": 6}
+{"SKU": "00000059", "cat": "FuenteAlim", "modelo": "Pure Power 11 600W", "marca": "be quiet!", "precio": 110000, "stock": 9}
+{"SKU": "00000060", "cat": "FuenteAlim", "modelo": "Focus GX-650", "marca": "Seasonic", "precio": 140000, "stock": 7}
+{"SKU": "00000061", "cat": "GPU", "modelo": "RTX 3050", "marca": "NVIDIA", "precio": 350000, "stock": 17}
+{"SKU": "00000063", "cat": "GPU", "modelo": "RTX 3060 Ti", "marca": "NVIDIA", "precio": 450000, "stock": 19}
+{"SKU": "00000064", "cat": "GPU", "modelo": "RX 7900 XTX", "marca": "AMD", "precio": 2000000, "stock": 8}
+{"SKU": "00000065", "cat": "GPU", "modelo": "RTX 4070", "marca": "NVIDIA", "precio": 1200000, "stock": 12}
+{"SKU": "00000066", "cat": "CPU", "modelo": "I5 12600K", "marca": "Intel", "precio": 400000, "stock": 8}
+{"SKU": "00000067", "cat": "CPU", "modelo": "Ryzen 7 7700X", "marca": "AMD", "precio": 500000, "stock": 7}
+{"SKU": "00000068", "cat": "CPU", "modelo": "I3 10100F", "marca": "Intel", "precio": 120000, "stock": 12}
+{"SKU": "00000069", "cat": "CPU", "modelo": "Ryzen 3 3200G", "marca": "AMD", "precio": 90000, "stock": 20}
+{"SKU": "00000070", "cat": "CPU", "modelo": "I7 12700F", "marca": "Intel", "precio": 600000, "stock": 9}
+{"SKU": "00000071", "cat": "Monitor", "modelo": "VG259QM", "marca": "Asus", "precio": 350000, "stock": 5}
+{"SKU": "00000072", "cat": "Monitor", "modelo": "C27G2Z", "marca": "AOC", "precio": 280000, "stock": 8}
+{"SKU": "00000074", "cat": "Monitor", "modelo": "27GN950-B", "marca": "LG", "precio": 700000, "stock": 4}
+{"SKU": "00000076", "cat": "Gabinete", "modelo": "Eclipse P500A", "marca": "Phanteks", "precio": 130000, "stock": 8}
+{"SKU": "00000081", "cat": "PlacaBase", "modelo": "X670E AORUS MASTER", "marca": "Gigabyte", "precio": 600000, "stock": 2}
+{"SKU": "00000083", "cat": "PlacaBase", "modelo": "B450M DS3H", "marca": "Gigabyte", "precio": 90000, "stock": 8}
+{"SKU": "00000086", "cat": "FuenteAlim", "modelo": "TX650M 650W", "marca": "Corsair", "precio": 120000, "stock": 8}
+{"SKU": "00000088", "cat": "FuenteAlim", "modelo": "SFX-L 600W", "marca": "SilverStone", "precio": 130000, "stock": 5}
+{"SKU": "00000090", "cat": "FuenteAlim", "modelo": "Prime TX-850", "marca": "Seasonic", "precio": 220000, "stock": 3}
+{"SKU": "00000091", "cat": "GPU", "modelo": "RTX 2070 Super", "marca": "NVIDIA", "precio": 400000, "stock": 11}
+{"SKU": "00000096", "cat": "CPU", "modelo": "I5 10400F", "marca": "Intel", "precio": 150000, "stock": 14}
+{"SKU": "00000097", "cat": "CPU", "modelo": "Ryzen 5 3600", "marca": "AMD", "precio": 130000, "stock": 8}
+{"SKU": "00000098", "cat": "CPU", "modelo": "I7 10700K", "marca": "Intel", "precio": 350000, "stock": 4}
+{"SKU": "00000100", "cat": "GPU", "modelo": "ASUS ROG 5090", "marca": "NVIDIA", "precio": 250000, "stock": 10}
+{"SKU": "00000101", "cat": "GPU", "modelo": "asus rog 5080", "marca": "NVIDIA", "precio": 50, "stock": 10}
+{"SKU": "00000102", "cat": "Gabinete", "modelo": "Meshify C", "marca": "Fractal Design", "precio": 135000, "stock": 7}
+{"SKU": "00000103", "cat": "Gabinete", "modelo": "Lancool II Mesh", "marca": "Lian Li", "precio": 125000, "stock": 9}
+{"SKU": "00000104", "cat": "Gabinete", "modelo": "Enthoo Pro", "marca": "Phanteks", "precio": 110000, "stock": 5}
+{"SKU": "00000105", "cat": "Gabinete", "modelo": "Crystal 570X", "marca": "Corsair", "precio": 180000, "stock": 6}
+{"SKU": "00000106", "cat": "Gabinete", "modelo": "Define R6", "marca": "Fractal Design", "precio": 160000, "stock": 3}
+{"SKU": "00000107", "cat": "Periferico", "modelo": "Mouse G Pro X Superlight", "marca": "Logitech", "precio": 45000, "stock": 17}
+{"SKU": "00000108", "cat": "Periferico", "modelo": "Mouse DeathAdder V2", "marca": "Razer", "precio": 35000, "stock": 18}
+{"SKU": "00000109", "cat": "Periferico", "modelo": "Teclado K70 RGB MK.2", "marca": "Corsair", "precio": 60000, "stock": 10}
+{"SKU": "00000110", "cat": "Periferico", "modelo": "Teclado BlackWidow V4", "marca": "Razer", "precio": 70000, "stock": 12}
+{"SKU": "00000111", "cat": "Periferico", "modelo": "Teclado G915 TKL", "marca": "Logitech", "precio": 90000, "stock": 8}
+{"SKU": "00000112", "cat": "Periferico", "modelo": "Mouse Pulsefire FPS Pro", "marca": "HyperX", "precio": 25000, "stock": 15}
+{"SKU": "00000113", "cat": "Periferico", "modelo": "Auriculares Cloud II", "marca": "HyperX", "precio": 40000, "stock": 14}
+{"SKU": "00000114", "cat": "Periferico", "modelo": "Auriculares Kraken X", "marca": "Razer", "precio": 35000, "stock": 16}
+{"SKU": "00000115", "cat": "Periferico", "modelo": "Auriculares Arctis 7", "marca": "SteelSeries", "precio": 80000, "stock": 9}
+{"SKU": "00000116", "cat": "Periferico", "modelo": "Mouse G502 HERO", "marca": "Logitech", "precio": 30000, "stock": 22}
+{"SKU": "00000117", "cat": "Periferico", "modelo": "Mouse Kone AIMO", "marca": "Roccat", "precio": 32000, "stock": 11}
+{"SKU": "00000118", "cat": "Periferico", "modelo": "Mouse Viper Ultimate", "marca": "Razer", "precio": 65000, "stock": 7}
+{"SKU": "00000119", "cat": "Periferico", "modelo": "Auriculares G733 Lightspeed", "marca": "Logitech", "precio": 75000, "stock": 6}
+{"SKU": "00000120", "cat": "Periferico", "modelo": "Teclado K100 RGB", "marca": "Corsair", "precio": 120000, "stock": 5}
+{"SKU": "00000121", "cat": "Periferico", "modelo": "Teclado Apex Pro", "marca": "SteelSeries", "precio": 110000, "stock": 2}
+{"SKU": "00000122", "cat": "Gabinete", "modelo": "CXM Meshify 70X", "marca": "Corsair", "precio": 90000, "stock": 20}
