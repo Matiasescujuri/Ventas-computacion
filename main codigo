@@ -1,0 +1,531 @@
+import json
+import os
+import datetime
+
+#impresión de menús
+
+def imprimirEncabezado(titulo, ancho):
+    print("-" * ancho)
+    print(f" {titulo} ".center(ancho, "="))
+    print("-" * ancho)
+
+def pedirEntero(ingreso, opciones):
+    while True:
+        try:
+            valor = int(input(ingreso))
+            if valor in opciones:
+                return valor
+            else:
+                print(f"Opción inválida. Elegí entre {opciones}")
+        except ValueError:
+            print("Entrada inválida. Ingrese un número.")
+        
+##Función para selección de la categoría
+
+def elegirCategoria():
+    categorias = [
+        "GPU", "CPU", "Periferico", "Gabinete", "Monitor", "PlacaBase",
+        "FuenteAlim"
+    ]
+    print('Las siguientes categorías están disponibles:')
+    for idx, categ in enumerate(categorias, start=1):
+        print(f"{idx}- {categ}")
+    print("-1- Salir")
+
+    opciones_validas = list(range(1, len(categorias) + 1)) + [-1]
+    seleccion = pedirEntero("Ingrese el número de categoría: ",
+                            opciones_validas)
+    if seleccion == -1:
+        return None
+    return categorias[seleccion - 1]
+
+#validación si existe el modelo
+def validarModeloEnCategoria(path, cat, modelo):
+    try:
+        with open(path, "rt") as archivo:
+            for linea in archivo:
+                if linea.strip():
+                    data = json.loads(linea)
+                    if data["cat"] == cat and data["modelo"].lower().strip() == modelo.lower().strip():
+                        return True
+    except Exception as e:
+        print(f"Error al validar modelo: {e}")
+    return False
+
+
+#Función de print de stock por categ
+
+def mostrarStock(path, cat):
+    print(f"\n--- STOCK ACTUAL EN CATEGORIA ---\n")
+    try:
+        with open(path, "rt") as archivo:
+            print(
+                f"{'SKU':10}{'Modelo':30} {'Marca':20} {'Precio':10} {'Stock':10}"
+            )
+            print("-" * 80)
+            for linea in archivo:
+                if linea.strip():
+                    data = json.loads(linea)
+                    if data["cat"] == cat:
+                        print(
+                            f"•{data['SKU']:<10}{data['modelo'].upper():30} {data['marca'].upper():20} {data['precio']:<10} {data['stock']:<10}"
+                        )
+    except Exception as e:
+        print(f"Error al mostrar stock: {e}")
+
+#Funciones de administrador
+
+def insertarProducto(path):
+    try:
+        nuevos_productos = []
+        print("--- AGREGAR PRODUCTO ---")
+        avanzar = True
+        while avanzar:
+            cat = elegirCategoria()
+            if cat is None:
+                return
+            mostrarStock(path, cat)
+            modelo = input("Modelo: ").strip()
+            if modelo == "-1":
+                return
+            if validarModeloEnCategoria(path, cat, modelo):
+                print("El modelo ya existe en esta categoría. Pruebe nuevamente.")
+                continue
+            marca = input("Marca: ")
+            if marca == "-1":
+                return
+            precio = int(input("Precio: "))
+            if precio == -1:
+                return
+            stock = int(input("Stock: "))
+            if stock == -1:
+                return
+            nuevo = {
+                "SKU": 000000000,
+                "cat": cat,
+                "modelo": modelo,
+                "marca": marca,
+                "precio": precio,
+                "stock": stock
+            }
+            nuevos_productos.append(nuevo)
+
+            seguir = input("¿Agregar otro producto? (s/n): ").strip().lower()
+            if seguir != "s":
+                avanzar = False
+
+        if not nuevos_productos:
+            print("No se ingresaron productos.")
+            return
+
+        # Obtener el último SKU del archivo
+        ultimo_sku = 0
+        with open("final_temp.txt", "w", encoding="utf-8") as final_op:
+            try:
+                with open(path, "r", encoding="utf-8") as original:
+                    for linea in original:
+                        if linea.strip():
+                            try:
+                                data = json.loads(linea)
+                                sku = int(data["SKU"])
+                                ultimo_sku = max(ultimo_sku, sku)
+                                final_op.write(json.dumps(data) + "\n")
+                            except (ValueError, KeyError, json.JSONDecodeError):
+                                continue
+            except FileNotFoundError:
+                print ("No se encontró el archivo de stock. No se insertarán nuevos productos al stock.")
+                pass
+
+            # Print de archivos nuevos
+            for i, producto in enumerate(nuevos_productos, start=1):
+                nuevo_sku = f"{ultimo_sku + i:08d}"
+                producto_ordenado = {
+                    "SKU": nuevo_sku,
+                    "cat": producto["cat"],
+                    "modelo": producto["modelo"],
+                    "marca": producto["marca"],
+                    "precio": producto["precio"],
+                    "stock": producto["stock"]
+                }
+                final_op.write(json.dumps(producto_ordenado) + "\n")
+
+        # Reemplazar el original
+        os.replace("final_temp.txt", path)
+        print(f"Se agregaron {len(nuevos_productos)} productos correctamente.")
+    except ValueError:
+        print('Ingrese un número válido')
+
+
+
+def modificarProducto(path):
+    print("--- MODIFICAR PRODUCTO ---")
+    modificaciones = []
+
+    avanzar = True
+    while avanzar:
+        cat = elegirCategoria()
+        if cat is None:
+            return
+        mostrarStock(path, cat)
+        modelo = input("Ingrese el modelo del producto a modificar: ").strip().lower()
+        if not validarModeloEnCategoria(path, cat, modelo):
+            print("Ese modelo no existe en la categoría especificada.")
+            continue
+        campo = input(
+            "¿Qué campo desea modificar? (precio p/stock s): ").strip().lower()
+        if campo not in ["p", "s"]:
+            print("Campo inválido.")
+            continue
+        if campo == 'p':
+            campo = 'precio'
+        if campo == 's':
+            campo = 'stock'
+        
+
+        nuevo_valor = input(f"Ingrese nuevo valor para el {campo}: ").strip()
+        try:
+            nuevo_valor = int(nuevo_valor)
+        except ValueError:
+            print("Debe ingresar un número.")
+            continue
+
+        modificaciones.append({
+            "cat": cat,
+            "modelo": modelo,
+            "campo": campo,
+            "nuevo_valor": nuevo_valor
+        })
+
+        seguir = input(
+            "¿Desea modificar otro producto? (s/n): ").strip().lower()
+        if seguir != "s":
+            avanzar = False
+
+    if not modificaciones:
+        print("No se realizaron modificaciones.")
+        return
+
+    # Escritura del archivo modificado
+    with open("final_temp.txt", "w", encoding="utf-8") as final_op:
+        try:
+            with open(path, "r", encoding="utf-8") as original:
+                for linea in original:
+                    if linea.strip():
+                        try:
+                            data = json.loads(linea)
+                            for mod in modificaciones:
+                                if data["cat"] == mod["cat"] and data["modelo"].lower() == mod["modelo"].lower():
+                                    data[mod["campo"]] = mod["nuevo_valor"]
+                            final_op.write(json.dumps(data) + "\n")
+                        except json.JSONDecodeError:
+                            continue
+        except FileNotFoundError:
+            print("Archivo no encontrado. No se aplicaron cambios.")
+            return
+
+    os.replace("final_temp.txt", path)
+    print("Modificaciones aplicadas correctamente.")
+
+#Elimina todos los productos sin stock 
+def eliminarProductosStockCero(path):
+    print("--- ELIMINAR PRODUCTOS SIN STOCK ---")
+
+    with open("final_temp.txt", "w", encoding="utf-8") as final_op:
+        try:
+            with open(path, "r", encoding="utf-8") as original:
+                for linea in original:
+                    if not linea.strip():
+                        continue
+                    try:
+                        data = json.loads(linea)
+                        if data["stock"] == 0:
+                            print(
+                                f'Se ha eliminado el producto {data["modelo"]} por falta de stock'
+                            )
+                            continue  # no lo escribas
+                        final_op.write(json.dumps(data) + "\n")
+                    except json.JSONDecodeError:
+                        continue
+        except FileNotFoundError:
+            print("No se encontró el archivo de inventario.")
+            return
+
+    os.replace("final_temp.txt", path)
+
+    print(f"Eliminados correctamente los productos sin stock.")
+
+#Eliminar producto individual
+
+def eliminarProductoEspecifico(path):
+    print("--- ELIMINAR PRODUCTO ---")
+    cat = elegirCategoria()
+    if cat is None:
+        return
+    mostrarStock(path, cat)
+    modelo = input("Modelo a eliminar: ").strip()
+
+    eliminado = False
+
+    with open("final_temp.txt", "w", encoding="utf-8") as final_op:
+        try:
+            with open(path, "r", encoding="utf-8") as original:
+                for linea in original:
+                    if not linea.strip():
+                        continue
+                    try:
+                        data = json.loads(linea)
+                        if data["cat"].lower() == cat.lower() and data["modelo"].lower().strip() == modelo.lower().strip():
+                            eliminado = True
+                            continue  # no lo escribo
+                        final_op.write(json.dumps(data) + "\n")
+                    except json.JSONDecodeError:
+                        continue
+        except FileNotFoundError:
+            print("No se encontró el archivo de inventario.")
+            return
+
+    os.replace("final_temp.txt", path)
+
+    if eliminado:
+        print(
+            f"Producto '{modelo}' de la categoría '{cat}' eliminado correctamente."
+        )
+    else:
+        print(
+            f"No se encontró el producto '{modelo}' en la categoría '{cat}'.")
+
+
+
+
+#Función para usuario
+
+def compraProducto(path):
+    total = 0
+    compras_realizadas = []
+    try:
+        print("--- COMPRA PRODUCTO ---")
+        compras = []
+    
+        avanzar = True
+        while avanzar:
+            cat = elegirCategoria()
+            if cat is None:
+                break
+            mostrarStock(path, cat)
+            modelo = input("Ingrese el modelo a comprar: ").strip().lower()
+            if modelo == "-1":
+                break
+            if not validarModeloEnCategoria(path, cat, modelo):
+                print("Ese modelo no existe en la categoría especificada.")
+                continue
+            cantidad = int(input(f'Qué cantidad de {modelo} desea comprar?: '))
+            if cantidad == -1:
+                break
+            print('El stock será validado individualmente al final de la compra')
+            compras.append({
+                "cat": cat,
+                "modelo": modelo,
+                "cantidad": cantidad
+            })
+    
+            seguir = input(
+                "¿Desea comprar otro producto? (s/n): ").strip().lower()
+            if seguir != "s":
+                avanzar = False
+
+        if not compras:
+            print("No se realizaron compras.")
+            return
+
+        ##Validamos que haya stock suficiente para emitir la venta
+
+        with open("final_temp.txt", "w", encoding="utf-8") as final_op:
+            try:
+                with open(path, "r", encoding="utf-8") as original:
+                    for linea in original:
+                        if not linea.strip():
+                            continue
+                        try:
+                            data = json.loads(linea)
+                            actualizado = False
+
+                            for compra in compras:
+                                if data["cat"].lower() == compra["cat"].lower() and data["modelo"].lower() == compra["modelo"].lower():
+                                    if data["stock"] >= compra["cantidad"]:
+                                        data["stock"] -= compra["cantidad"]
+                                        compras_realizadas.append({
+                                            "cat": compra["cat"],
+                                            "modelo": compra["modelo"],
+                                            "cantidad": compra["cantidad"],
+                                            "precio_unitario": data["precio"],
+                                        })
+                                        actualizado = True
+                                    else:
+                                        nuevo_stock = int(input(
+                                            f'No hay suficiente stock para {compra["modelo"]}, ingrese un stock menor o igual a {data["stock"]}: '
+                                        ))
+                                        if nuevo_stock == -1:
+                                            break
+                                        while nuevo_stock > data["stock"]:
+                                            nuevo_stock = int(input(
+                                                f'No hay suficiente stock para {compra["modelo"]}, ingrese un stock menor o igual a {data["stock"]}: '
+                                            ))
+                                            if nuevo_stock == -1:
+                                                break
+                                        if nuevo_stock == -1:
+                                            break
+                                        data["stock"] -= nuevo_stock
+                                        compras_realizadas.append({
+                                            "cat": compra["cat"],
+                                            "modelo": compra["modelo"],
+                                            "cantidad": nuevo_stock,
+                                            "precio_unitario": data["precio"],
+                                        })
+                                        actualizado = True
+                                        total += data["precio"]
+
+                            final_op.write(json.dumps(data) + "\n")
+
+                        except json.JSONDecodeError:
+                            continue
+            except FileNotFoundError:
+                print("Archivo no encontrado. No se aplicaron cambios.")
+                return
+        os.replace("final_temp.txt", path)
+
+        archivo_nombre = "registro_compras.txt"
+        nuevo_id = obtener_ultimo_id(archivo_nombre) + 1
+        total_compra = 0  
+        fecha_compra = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        try:
+            with open(archivo_nombre, "a") as archivo:
+                archivo.write(f"Id de compra: {nuevo_id:07d}\n")  # ID con ceros a la izquierda
+                archivo.write(f"-- Realizada el: {fecha_compra}\n")
+                
+
+                for compra in compras_realizadas:
+                    total = compra["precio_unitario"] * compra["cantidad"]
+                    archivo.write(
+                        f"Categoria: {compra['cat']} - Modelo: {compra['modelo'].upper()} - "
+                        f"Cantidad: {compra['cantidad']} - Precio unitario: ${compra['precio_unitario']:.2f} - "
+                        f"Total: ${total:.2f}\n"
+                    )
+                    total_compra +=total
+                archivo.write(f"Total de la compra: ${total_compra:.2f}\n")
+                archivo.write('\n')
+
+            print(f"\nCompra finalizada. Total a pagar: ${total_compra:.2f}")
+            print(f"Los productos comprados fueron guardados en '{archivo_nombre}'.")
+
+        except FileNotFoundError:
+            print("No se encontró el archivo .")
+    
+    except KeyboardInterrupt:
+        print("Ud decidió salir.")
+        return
+
+def obtener_ultimo_id(archivo):
+    ultimo_id = 0
+    try:
+        archivo=open(archivo, "r")
+        for linea in archivo:
+            if linea[:14] == "Id de compra: ":
+                num_str = linea.strip()[14:]
+                try:
+                    num = int(num_str)
+                    if num > ultimo_id:
+                        ultimo_id = num
+                except ValueError:
+                    pass
+
+        return ultimo_id
+
+    except FileNotFoundError:
+        print("No se encontro el archivo")
+
+    finally:
+        archivo.close()
+
+
+
+
+
+
+
+#menus
+
+
+def menuAdmin(path):
+    while True:
+        imprimirEncabezado("Menú Administrador", 60)
+        print(
+            "1- Agregar Producto\n2- Modificar Producto\n3- Eliminar Producto\n4- Eliminar productos sin stock \n5- Listar Stock \n6- Volver"
+        )
+        print("-" * 60)
+        op = pedirEntero("Opción: ", [1, 2, 3, 4, 5, 6])
+        if op == 1:
+            insertarProducto(path)
+        elif op == 2:
+            modificarProducto(path)
+        elif op == 3:
+            eliminarProductoEspecifico(path)
+        elif op == 4:
+            eliminarProductosStockCero(path)
+        elif op == 5:
+            cat = elegirCategoria()
+            if cat is not None:
+                mostrarStock(path, cat)
+        elif op == 6:
+            break
+
+def menuUsuario(path):
+    ancho = 60
+    while True:
+        imprimirEncabezado("Menú Usuario", ancho)
+        print("1- Listar Productos \n2- Comprar productos \n3-Volver")
+        print("-" * ancho)
+        op = pedirEntero("Opción: ", [1, 2, 3])
+        if op == 1:
+            cat = elegirCategoria()
+            if cat is not None:
+                mostrarStock(path, cat)
+        elif op == 2:
+            compraProducto(path)
+        elif op == 3:
+            break
+
+
+def menuAcceso(path):
+    ancho = 60
+    while True:
+        imprimirEncabezado("Control de Acceso", ancho)
+        print("1- Administrador\n2- Usuario\n3- Salir")
+        print("-" * ancho)
+        tipo = pedirEntero("Tipo de usuario: ", [1, 2, 3])
+        if tipo == 1:
+            clave = input("Clave de administrador: ")
+            if clave == "123":
+                menuAdmin(path)
+            else:
+                print("Clave incorrecta.")
+        elif tipo == 2:
+            menuUsuario(path)
+        else:
+            break
+
+
+def main():
+    try:
+        #inicializo variables
+        archivo_datos = "inventario.txt"
+        menuAcceso(archivo_datos)
+        print("Gracias por usar el sistema.")
+    except KeyboardInterrupt:
+        print('\n Ud salió del programa. Hasta luego!')
+
+
+if __name__ == "__main__":
+    main()
+
+
